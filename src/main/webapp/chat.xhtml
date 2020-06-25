@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <!--<title>Facelet Title</title>-->
+        <title>Chat</title>
+
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <div>
+                <p:selectOneMenu id="usersList" value="#{chatAppCtrl.model.to}"  panelStyle="width:180px"
+                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" converter="userConverter">
+                    <p:ajax listener="#{chatAppCtrl.onUserChange()}" update="messagesPanel" />
+                    <f:selectItems value="#{chatAppCtrl.model.usersList}" var="user" itemLabel="#{chatAppCtrl.createUserLabel(user.firstName,user.lastName)}" />
+                    <p:column>
+                        <h:outputText value="#{chatAppCtrl.createUserLabel(t.firstName,t.lastName)}" />
+                    </p:column>
+                </p:selectOneMenu>
+            </div>
+            <p:poll interval="30" update="usersList" listener="#{chatAppCtrl.receiveAllUsers()}" />
+            <div>
+                <p:scrollPanel style="width:250px;height:200px" id="messagesPanel">
+                    <p:repeat value="#{chatAppCtrl.model.messagesList}" var="msg">
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="#{msg.from}" />
+                                <h:outputText value="#{msg.messageText}"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                        <hr/>
+                    </p:repeat>
+                </p:scrollPanel>
+            </div>
+            <p:poll interval="5" update="messagesPanel" listener="#{chatAppCtrl.receiveMessagesByUsers()}" />
+            <div>
+                <p:inputText value="#{chatAppCtrl.model.sentMessage}"/>
+            </div>
+            <div>
+                <p:commandButton update=":form" action="#{chatAppCtrl.sendMessage()}" value="send" ajax="false"/>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
