@@ -85,12 +85,15 @@ public class ChatAppCtrl implements Serializable {
     }
 
     public User getUserByLabel(String label) {
+        logger.log(Level.INFO,"getUserByLabel: label : "+label);
         String[] ch = label.split(" ");
         for (User user : getModel().getUsersList()) {
             if ((user.getFirstName().equals(ch[0])) && (user.getLastName().equals(ch[1]))) {
+                logger.log(Level.INFO,"getUserByLabel: found user :"+user);
                 return user;
             }
         }
+        logger.log(Level.INFO,"getUserByLabel: user not found:"+label+" "+getModel().getUsersList());
         return null;
     }
 
