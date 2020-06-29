@@ -123,6 +123,7 @@ public class ChatAppCtrl implements Serializable {
     }
 
     public void onUserChange() {
+        logger.log(Level.INFO,"On User change "+getModel().getTo());
         if (getModel().getTo() != null) {
             receiveMessagesByUsers();
         } else {
