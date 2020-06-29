@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ae.smartek.hebh.chatApp.dto;
+package ae.smartek.hebh.chatApp.dao;
 
 import ae.smartek.hebh.chatApp.config.ChatAppConfig;
 import ae.smartek.hebh.chatApp.model.Message;
@@ -20,11 +20,11 @@ import org.springframework.web.client.RestTemplate;
  * @author houssem
  */
 @Component
-public class ChatAppDTO {
+public class ChatAppDAO {
 
     RestTemplate restTemplate;
 
-    public ChatAppDTO() {
+    public ChatAppDAO() {
         restTemplate = new RestTemplate();
     }
 

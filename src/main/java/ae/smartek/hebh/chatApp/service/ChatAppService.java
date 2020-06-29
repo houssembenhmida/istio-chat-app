@@ -5,7 +5,7 @@
  */
 package ae.smartek.hebh.chatApp.service;
 
-import ae.smartek.hebh.chatApp.dto.ChatAppDTO;
+import ae.smartek.hebh.chatApp.dao.ChatAppDAO;
 import ae.smartek.hebh.chatApp.model.ChatAppModel;
 import ae.smartek.hebh.chatApp.model.Message;
 import ae.smartek.hebh.chatApp.model.User;
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class ChatAppService {
 
     @Autowired
-    ChatAppDTO dto;
+    ChatAppDAO dto;
     @Autowired
     ChatAppModel appModel;
 

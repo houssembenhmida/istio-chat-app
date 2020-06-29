@@ -5,7 +5,7 @@
  */
 package ae.smartek.hebh.chatApp;
 
-import ae.smartek.hebh.chatApp.dto.ChatAppDTO;
+import ae.smartek.hebh.chatApp.dao.ChatAppDAO;
 import ae.smartek.hebh.chatApp.model.ChatAppModel;
 import ae.smartek.hebh.chatApp.service.ChatAppService;
 import org.springframework.context.annotation.Bean;
@@ -31,8 +31,8 @@ public class AppConfig {
     }
 
     @Bean
-    public ChatAppDTO chatAppDTO() {
-        return new ChatAppDTO();
+    public ChatAppDAO chatAppDAO() {
+        return new ChatAppDAO();
     }
 
 

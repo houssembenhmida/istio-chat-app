@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -33,6 +35,7 @@ public class ChatAppCtrl implements Serializable {
     ChatAppService service;
     @Autowired
     ChatAppModel appModel;
+    public static Logger logger = Logger.getLogger(ChatAppCtrl.class.getName());
 
     private Model model = new Model();
 
@@ -54,7 +57,10 @@ public class ChatAppCtrl implements Serializable {
     }
 
     public void sendMessage() {
-        service.sendMessage(getModel().getUser().getUserName(), getModel().getTo().getUserName(), getModel().sentMessage);
+        logger.log(Level.INFO,getModel().getUser().getUserName());
+        logger.log(Level.INFO,getModel().getTo().getUserName());
+        logger.log(Level.INFO,getModel().getSentMessage());
+        service.sendMessage(getModel().getUser().getUserName(), getModel().getTo().getUserName(), getModel().getSentMessage());
         getModel().setSentMessage("");
     }
 
