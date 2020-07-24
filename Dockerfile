@@ -7,5 +7,7 @@ RUN mvn -f /home/app/pom.xml clean install -q
 #
 FROM docker.io/tomcat:8
 COPY --from=build /home/app/target/ROOT.war /usr/local/tomcat/webapps/
+RUN chgrp -R 0 /usr/local/tomcat/ && \
+    chmod -R g=u /usr/local/tomcat/
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
