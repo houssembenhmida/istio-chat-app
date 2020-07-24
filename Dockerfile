@@ -1,6 +1,6 @@
 FROM docker.io/maven:3.6.3-jdk-8-openj9 AS build
 COPY . /home/app/
-RUN mvn -f /home/app/pom.xml clean install
+RUN mvn -f /home/app/pom.xml clean install -q
 
 #
 # Package stage
